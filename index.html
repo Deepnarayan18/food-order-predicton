@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Order Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .card h1 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .card label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .card input[type="number"] {
+            width: calc(100% - 16px);
+            padding: 4px 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .card input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .card input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .card h2 {
+            margin: 20px 0 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Enter Customer Details to Predict If the Customer Will Order Again</h1>
+        <form action="/predict" method="post">
+            <label for="age">Enter the Age of the Customer:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Enter the Gender of the Customer (1 = Male, 0 = Female):</label>
+            <input type="number" id="gender" name="gender" required>
+
+            <label for="marital_status">Marital Status of the Customer (1 = Single, 2 = Married, 3 = Not Revealed):</label>
+            <input type="number" id="marital_status" name="marital_status" required>
+
+            <label for="occupation">Occupation of the Customer (Student = 1, Employee = 2, Self Employeed = 3, House wife = 4):</label>
+            <input type="number" id="occupation" name="occupation" required>
+
+            <label for="income">Monthly Income:</label>
+            <input type="number" id="income" name="income" required>
+
+            <label for="education">Educational Qualification (Graduate = 1, Post Graduate = 2, Ph.D = 3, School = 4, Uneducated = 5):</label>
+            <input type="number" id="education" name="education" required>
+
+            <label for="family_size">Family Size:</label>
+            <input type="number" id="family_size" name="family_size" required>
+
+            <label for="pin_code">Pin Code:</label>
+            <input type="number" id="pin_code" name="pin_code" required>
+
+            <label for="review">Review of the Last Order (1 = Positive, 0 = Negative):</label>
+            <input type="number" id="review" name="review" required>
+
+            <input type="submit" value="Predict">
+        </form>
+        <br>
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
